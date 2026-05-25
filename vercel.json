@@ -6,7 +6,6 @@
     "NODE_ENV": "production"
   },
   "public": false,
-  "functions": {},
   "rewrites": [
     {
       "source": "/(.*)",

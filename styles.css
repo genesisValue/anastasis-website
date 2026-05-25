@@ -882,8 +882,8 @@ section h2 {
     }
 }
 .hero-logo {
-    width: 220px;
-    height: 220px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 40px rgba(255, 140, 0, 0.7);

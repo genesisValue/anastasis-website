@@ -881,3 +881,10 @@ section h2 {
         transition-duration: 0.01ms !important;
     }
 }
+.logo-image {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}

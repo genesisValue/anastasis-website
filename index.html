@@ -1,284 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ANASTASIS - AI-powered accessibility for visually impaired people. Built on Solana. Guiding toward the light.">
-    <meta name="theme-color" content="#0a0a0a">
-    <title>ANASTASIS - AI Accessibility on Solana</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anastasis | AI Assistive Technology</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #05070d;
+      color: #f5f7fb;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 40px 8%;
+      background:
+        radial-gradient(circle at top right, rgba(255,122,24,.25), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(0,140,255,.22), transparent 35%),
+        linear-gradient(135deg, #05070d 0%, #0a1020 100%);
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      color: #ff9b45;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(12px);
+      margin-bottom: 28px;
+      font-size: 14px;
+      letter-spacing: .5px;
+    }
+
+    h1 {
+      font-size: clamp(46px, 8vw, 92px);
+      line-height: .95;
+      letter-spacing: -3px;
+      margin-bottom: 26px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #ff8a1f, #ffd19a, #5bbcff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.55;
+      color: #b9c2d3;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7a18, #ffb86b);
+      color: #111;
+      box-shadow: 0 0 35px rgba(255,122,24,.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      backdrop-filter: blur(12px);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 5vw, 56px);
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: #aeb8ca;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 26px;
+      padding: 30px;
+      min-height: 230px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .icon {
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: #aeb8ca;
+      line-height: 1.6;
+    }
+
+    .mission {
+      background:
+        radial-gradient(circle at center, rgba(255,122,24,.16), transparent 40%),
+        #070a12;
+      text-align: center;
+    }
+
+    .quote {
+      font-size: clamp(28px, 5vw, 58px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .quote span {
+      color: #ff9b45;
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 18px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .phase strong {
+      color: #ff9b45;
+    }
+
+    .phase p {
+      color: #b9c2d3;
+      line-height: 1.6;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    footer {
+      padding: 40px 8%;
+      text-align: center;
+      color: #7f8aa0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 32px 6%;
+      }
+
+      section {
+        padding: 76px 6%;
+      }
+
+      .phase {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-logo">
-                <img src="./logo.jpeg.png" alt="ANASTASIS Logo" class="logo-image">
-                <span class="logo-text">ANASTASIS</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#mission" class="nav-link">Mission</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
-                <li><a href="#token" class="nav-link">Token</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-mascot">
-                <img src="./logo.jpeg.png" alt="ANASTASIS Logo" class="hero-logo">
-                <div class="mascot-glow"></div>
-            </div>
-            <h1 class="hero-title">ANASTASIS</h1>
-            <p class="hero-subtitle">AI-powered assistance for visually impaired people</p>
-            <p class="hero-slogan">Guiding toward the light.</p>
-            
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('token').scrollIntoView({behavior: 'smooth'})">Learn About $ANS</button>
-            </div>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">AI • Accessibility • Human Impact</div>
 
-            <div class="micro-alpha-strip">
-                Built on Solana | $ANS | AI + Accessibility | Micro Alpha
-            </div>
-        </div>
-        <div class="hero-bg"></div>
-    </section>
+      <h1>
+        Anastasis<br />
+        <span>Guiding toward the light.</span>
+      </h1>
 
-    <!-- Mission Section -->
-    <section id="mission" class="mission">
-        <div class="container">
-            <h2>Our Mission</h2>
-            <p class="section-subtitle">Combining AI and wearable technology to empower visually impaired people with safe navigation and independence.</p>
-            
-            <div class="mission-grid">
-                <div class="mission-card">
-                    <div class="card-icon">🤖</div>
-                    <h3>AI Intelligence</h3>
-                    <p>Advanced computer vision and machine learning algorithms to understand the environment in real-time.</p>
-                </div>
-                <div class="mission-card">
-                    <div class="card-icon">⌚</div>
-                    <h3>Wearable Tech</h3>
-                    <p>Lightweight, accessible devices that provide seamless guidance and alerts throughout daily activities.</p>
-                </div>
-                <div class="mission-card">
-                    <div class="card-icon">🌍</div>
-                    <h3>Real-World Impact</h3>
-                    <p>Community-driven development with accessibility feedback ensuring practical solutions for daily challenges.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <p>
+        Anastasis is building AI-powered assistive technology designed to help visually impaired people move through the world with more safety, confidence, and independence.
+      </p>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Core Features</h2>
-            <p class="section-subtitle">Designed to provide independence, safety, and confidence.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚧</div>
-                    <h3>Obstacle Detection</h3>
-                    <p>Real-time detection and avoidance of obstacles in the path</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎙️</div>
-                    <h3>Voice Guidance</h3>
-                    <p>Natural language instructions for navigation and environmental awareness</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📳</div>
-                    <h3>Vibration Alerts</h3>
-                    <p>Discrete haptic feedback for warnings and directions</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚦</div>
-                    <h3>Traffic Light Recognition</h3>
-                    <p>Identification of traffic signals for safe street crossing</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚌</div>
-                    <h3>Public Transport Assistance</h3>
-                    <p>Help finding and boarding the correct public transportation</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🆘</div>
-                    <h3>Emergency Alerts</h3>
-                    <p>Instant notifications to family and emergency contacts when needed</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⛈️</div>
-                    <h3>Weather Alerts</h3>
-                    <p>Real-time weather information and severe weather notifications</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Coming Soon</h3>
-                    <p>More features in development based on community feedback</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#mission">View Mission</a>
+        <a class="btn btn-secondary" href="https://t.me/+aFT_FeK3dfoxYjY0" target="_blank">Join Community</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="roadmap">
-        <div class="container">
-            <h2>Roadmap</h2>
-            <p class="section-subtitle">Our journey toward sustainable accessibility innovation.</p>
-            
-            <div class="roadmap-timeline">
-                <div class="roadmap-phase">
-                    <div class="phase-marker">I</div>
-                    <h3>REBIRTH</h3>
-                    <div class="phase-content">
-                        <p><strong>Evolution from Genesis Value into ANASTASIS</strong></p>
-                        <ul>
-                            <li>Brand identity and website launch</li>
-                            <li>Community foundation establishment</li>
-                            <li>Solana ecosystem visibility</li>
-                            <li>Transparency and trust building</li>
-                        </ul>
-                    </div>
-                </div>
+  <section>
+    <h2 class="section-title">AI built for real life.</h2>
+    <p class="section-subtitle">
+      Not just another crypto project. Anastasis focuses on real-world assistive technology, combining artificial intelligence, voice guidance, and future wearable devices.
+    </p>
 
-                <div class="roadmap-phase">
-                    <div class="phase-marker">II</div>
-                    <h3>THE LIGHT PROTOCOL</h3>
-                    <div class="phase-content">
-                        <p><strong>AI accessibility research and wearable direction</strong></p>
-                        <ul>
-                            <li>AI accessibility research initiatives</li>
-                            <li>Voice guidance concepts development</li>
-                            <li>Wearable guidance direction</li>
-                            <li>Real accessibility community feedback</li>
-                            <li>MVP architecture planning</li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>VisionAI</h3>
+        <p>AI-powered environmental understanding for obstacle awareness and safer movement.</p>
+      </div>
 
-                <div class="roadmap-phase">
-                    <div class="phase-marker">III</div>
-                    <h3>SUSTAINABLE IMPACT</h3>
-                    <div class="phase-content">
-                        <p><strong>Ecosystem development and accessibility initiatives</strong></p>
-                        <ul>
-                            <li>Sustainable ecosystem development</li>
-                            <li>DeFi and AI ecosystem connections</li>
-                            <li>Public progress updates</li>
-                            <li>Accessibility-focused initiatives</li>
-                            <li><strong>Milestone Goal:</strong> At 1M market cap, ANASTASIS aims to fund and donate its first professional assistive smart device for a visually impaired person</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="card">
+        <div class="icon">🎧</div>
+        <h3>Voice Guidance</h3>
+        <p>Simple real-time audio guidance designed for people who need clear, fast information.</p>
+      </div>
 
-                <div class="roadmap-phase">
-                    <div class="phase-marker">IV</div>
-                    <h3>MICRO ALPHA TO REALITY</h3>
-                    <div class="phase-content">
-                        <p><strong>From prototype to real-world deployment</strong></p>
-                        <ul>
-                            <li>Prototype exploration and development</li>
-                            <li>AI guidance architecture refinement</li>
-                            <li>Wearable technology direction</li>
-                            <li>Testing and iteration cycles</li>
-                            <li>Community-driven development</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="card">
+        <div class="icon">🚦</div>
+        <h3>Traffic Awareness</h3>
+        <p>Future recognition tools for traffic lights, crossings, transport routes, and public spaces.</p>
+      </div>
 
-    <!-- Token Section -->
-    <section id="token" class="token">
-        <div class="container">
-            <h2>The ANASTASIS Token</h2>
-            <p class="section-subtitle">Built on Solana blockchain for transparency and accessibility.</p>
-            
-            <div class="token-grid">
-                <div class="token-card">
-                    <h3>Contract Address</h3>
-                    <div class="contract-box">
-                        <code id="contract-address">C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC</code>
-                        <button class="copy-btn" onclick="copyToClipboard('contract-address')">Copy</button>
-                    </div>
-                    <p class="security-note">⚠️ <strong>Always verify the official contract address</strong> before any transaction.</p>
-                </div>
+      <div class="card">
+        <div class="icon">🆘</div>
+        <h3>Emergency Support</h3>
+        <p>Planned emergency alerts and family-contact features for safer independent navigation.</p>
+      </div>
+    </div>
+  </section>
 
-                <div class="token-card">
-                    <h3>Token Details</h3>
-                    <ul class="token-details">
-                        <li><strong>Name:</strong> ANASTASIS</li>
-                        <li><strong>Symbol:</strong> $ANS</li>
-                        <li><strong>Blockchain:</strong> Solana</li>
-                        <li><strong>Fixed Supply:</strong> 28,000,000 $ANS</li>
-                        <li><strong>Vision:</strong> Long-term Bitcoin reserve model</li>
-                    </ul>
-                </div>
+  <section id="mission" class="mission">
+    <div class="quote">
+      Technology becomes meaningful when it <span>restores independence</span>, dignity, and freedom to real people.
+    </div>
+  </section>
 
-                <div class="token-card">
-                    <h3>Explore</h3>
-                    <a href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF" target="_blank" class="btn btn-secondary">View on DexScreener</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section>
+    <h2 class="section-title">Roadmap</h2>
+    <p class="section-subtitle">
+      A focused path from concept to real-world testing and future donations for visually impaired people.
+    </p>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p class="section-subtitle">Join us in building the future of AI-powered accessibility.</p>
-            
-            <div class="contact-content">
-                <div class="contact-card">
-                    <h3>📧 Direct Contact</h3>
-                    <p>For accessibility feedback, AI collaboration, DeFi ecosystem opportunities, or community support, contact us at:</p>
-                    <a href="mailto:contact.anastasis@proton.me" class="contact-email">contact.anastasis@proton.me</a>
-                </div>
+    <div class="roadmap">
+      <div class="phase">
+        <strong>Phase 1</strong>
+        <p>Foundation, website, community building, mission clarity, and early awareness.</p>
+      </div>
 
-                <div class="contact-card">
-                    <h3>🌐 Social & Community</h3>
-                    <div class="social-links">
-                        <a href="https://x.com/AnastasisTeh" target="_blank" class="social-btn">
-                            <span class="social-icon">𝕏</span> X / Twitter
-                        </a>
-                        <a href="https://t.me/+aFT_FeK3dfoxYjY0" target="_blank" class="social-btn">
-                            <span class="social-icon">✈️</span> Telegram
-                        </a>
-                        <a href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF" target="_blank" class="social-btn">
-                            <span class="social-icon">📊</span> DexScreener
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="phase">
+        <strong>Phase 2</strong>
+        <p>AI app concept: voice guidance, object awareness, weather alerts, and transport support.</p>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">ANASTASIS — Built on Solana. Driven by people. Guiding toward the light.</p>
-            <p class="footer-email">For inquiries: <a href="mailto:contact.anastasis@proton.me">contact.anastasis@proton.me</a></p>
-            <p class="footer-copyright">&copy; 2026 ANASTASIS. All rights reserved.</p>
-        </div>
-    </footer>
+      <div class="phase">
+        <strong>Phase 3</strong>
+        <p>Wearable prototype research, testing with affordable hardware, and accessibility-focused design.</p>
+      </div>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top">↑</button>
+      <div class="phase">
+        <strong>Phase 4</strong>
+        <p>Real-world testing and first assistive device donations for visually impaired people.</p>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <section>
+    <h2 class="section-title">Join the mission.</h2>
+    <p class="section-subtitle">
+      Anastasis is a people-first technology vision built on transparency, accessibility, and long-term human impact.
+    </p>
+
+    <div class="links">
+      <a class="btn btn-primary" href="https://x.com/genesisvalue?s=21" target="_blank">Follow on X</a>
+      <a class="btn btn-secondary" href="https://t.me/+aFT_FeK3dfoxYjY0" target="_blank">Telegram</a>
+      <a class="btn btn-secondary" href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF" target="_blank">DexScreener</a>
+    </div>
+  </section>
+
+  <footer>
+    Anastasis © 2026 • AI for Humanity • Built with long-road discipline
+  </footer>
+
 </body>
 </html>

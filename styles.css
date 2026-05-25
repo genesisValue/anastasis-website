@@ -881,10 +881,16 @@ section h2 {
         transition-duration: 0.01ms !important;
     }
 }
-.hero-logo {
+ .hero-logo {
     width: 90px;
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 40px rgba(255, 140, 0, 0.7);
+}
+
+.hero-mascot {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 30px;
 }

@@ -1,0 +1,16 @@
+{
+  "buildCommand": "echo 'Building ANASTASIS website'",
+  "outputDirectory": ".",
+  "framework": "other",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "public": false,
+  "functions": {},
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

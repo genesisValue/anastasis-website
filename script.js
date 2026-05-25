@@ -1,16 +1,18 @@
-// Smooth Scrolling Navigation
+// Smooth scrolling and navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            updateActiveNavLink();
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
 
-// Mobile Menu Toggle
+// Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -26,175 +28,136 @@ if (hamburger) {
     });
 }
 
-// Update Active Nav Link
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
+// Active nav link highlighting
+window.addEventListener('scroll', () => {
     let current = '';
+    const sections = document.querySelectorAll('section');
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
         if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
-    navLinks.forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
             link.classList.add('active');
         }
     });
-}
 
-window.addEventListener('scroll', updateActiveNavLink);
-
-// Scroll to Top Button
-const scrollToTopBtn = document.getElementById('scrollToTop');
-
-window.addEventListener('scroll', () => {
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollToTop');
     if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('show');
+        scrollBtn.classList.add('show');
     } else {
-        scrollToTopBtn.classList.remove('show');
+        scrollBtn.classList.remove('show');
     }
 });
 
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Scroll to top
+document.getElementById('scrollToTop')?.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 
-// Copy to Clipboard Function
+// Copy contract address
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
     const text = element.textContent;
-    
     navigator.clipboard.writeText(text).then(() => {
         const btn = event.target;
         const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
-        btn.style.background = '#FF1493';
-        
+        btn.textContent = '✓ Copied!';
         setTimeout(() => {
             btn.textContent = originalText;
-            btn.style.background = '';
         }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy:', err);
+    }).catch(() => {
+        alert('Failed to copy. Please try again.');
     });
 }
 
-// Intersection Observer for Animations
+// Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.animation = `fadeInUp 0.6s ease-out forwards`;
-            observer.unobserve(entry.target);
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
 }, observerOptions);
 
-// Observe cards for animation
-document.querySelectorAll('.mission-card, .feature-card, .roadmap-phase, .token-card, .contact-card').forEach(card => {
-    observer.observe(card);
+document.querySelectorAll('.feature-card, .mission-card, .token-card, .contact-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
 });
 
-// Add CSS animation keyframes dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Track page metrics (non-intrusive)
-function trackMetrics() {
-    const metrics = {
-        timestamp: new Date().toISOString(),
-        visibleSections: Array.from(document.querySelectorAll('section')).map(s => s.id).filter(id => id)
-    };
-    
-    // Log only for development purposes
-    if (window.location.hostname === 'localhost') {
-        console.log('Page Metrics:', metrics);
-    }
-}
-
-window.addEventListener('load', trackMetrics);
-
-// Lazy Load Images (if any)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
-}
-
-// Keyboard Navigation
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && navMenu?.classList.contains('active')) {
         navMenu.classList.remove('active');
     }
 });
 
-// Performance Monitoring
-if (window.performance && window.performance.timing) {
-    window.addEventListener('load', () => {
-        const perfData = window.performance.timing;
-        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        
-        if (window.location.hostname === 'localhost') {
-            console.log('Page Load Time:', pageLoadTime + 'ms');
-        }
-    });
+// Add active style to nav links
+const style = document.createElement('style');
+style.textContent = `
+    .nav-link.active {
+        color: #d4af37;
+    }
+    .nav-link.active::after {
+        width: 100%;
+    }
+`;
+document.head.appendChild(style);
+
+// Performance monitoring
+if (window.performance && window.performance.navigation.type === 1) {
+    console.log('Page was reloaded');
 }
 
-// Accessibility: Focus Management
-document.querySelectorAll('a, button').forEach(element => {
-    element.addEventListener('focus', () => {
-        element.style.outline = '2px solid #FFD700';
-        element.style.outlineOffset = '2px';
-    });
+// Accessibility enhancements
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
     
-    element.addEventListener('blur', () => {
-        element.style.outline = '';
+    btn.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+        }
     });
 });
 
-// Initialize on DOM Ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Set initial active link
-    updateActiveNavLink();
-    
-    // Add stagger animation to cards
-    const cards = document.querySelectorAll('.mission-card, .feature-card, .roadmap-phase, .token-card, .contact-card');
-    cards.forEach((card, index) => {
-        card.style.setProperty('--delay', index * 0.1 + 's');
+// Lazy loading for images
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
     });
-});
+    document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
+}
 
-// Prevent common security issues
-document.addEventListener('contextmenu', (e) => {
-    // Allow right-click, but you could restrict it here if needed
-});
+// Dynamic year in footer
+const year = new Date().getFullYear();
+const footerYear = document.querySelector('.footer-copyright');
+if (footerYear && year > 2026) {
+    footerYear.textContent = footerYear.textContent.replace('2026', year.toString());
+}

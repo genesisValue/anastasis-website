@@ -3,138 +3,344 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ANASTASIS — Guiding Toward The Light</title>
+
+  <title>ANASTASIS — Guiding toward the light.</title>
+
+  <meta name="description" content="ANASTASIS is building AI-powered assistive technology designed to help visually impaired people move through the world with more safety, confidence, and independence. Built on Solana." />
+  <meta name="theme-color" content="#050811" />
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-     <h1 style="color:white;font-size:60px;">
-ANASTASIS TEST
-</h1> 
       font-family:Inter,Arial,sans-serif;
       background:#03070d;
       color:#f5f7fb;
       overflow-x:hidden;
     }
     a{text-decoration:none;color:inherit}
+    .container{width:min(1200px,90%);margin:auto}
+
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      background:rgba(3,7,13,.72);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      height:76px;display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}
+    .brand-icon{
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,#ffb347,#ff7a18);
+      color:#080808;box-shadow:0 0 30px rgba(255,179,71,.45)
+    }
+    .nav-links{display:flex;gap:28px;font-size:.95rem;color:#cbd5e1}
+    .nav-links a:hover{color:#ffb347}
 
     .hero{
-      min-height:100vh;
-      padding:40px 8%;
-      display:flex;
-      align-items:center;
+      min-height:100vh;padding:140px 0 70px;
       background:
-        radial-gradient(circle at 75% 35%,rgba(255,168,62,.25),transparent 28%),
-        radial-gradient(circle at 90% 65%,rgba(0,132,255,.18),transparent 35%),
-        linear-gradient(135deg,#03070d,#07111f 65%,#02050a);
-      position:relative;
+        radial-gradient(circle at 78% 30%,rgba(255,179,71,.24),transparent 30%),
+        radial-gradient(circle at 15% 80%,rgba(255,80,180,.12),transparent 32%),
+        linear-gradient(180deg,#050811,#02040a);
     }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-      background-size:70px 70px;
-      mask-image:linear-gradient(to bottom,black,transparent 80%);
-      pointer-events:none;
+    .hero-grid{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;
     }
-
-    .hero-wrap{
-      width:100%;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:50px;
-      align-items:center;
-      position:relative;
-      z-index:2;
+    .pill{
+      display:inline-block;padding:10px 18px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+      color:#ffca7a;font-size:.78rem;font-weight:800;letter-spacing:2px;
+      margin-bottom:24px;
     }
-
-    .brand{
-      position:absolute;
-      top:28px;
-      left:8%;
-      display:flex;
-      align-items:center;
-      gap:16px;
-      z-index:3;
-    }
-
-    .brand img{
-      width:58px;
-      height:58px;
-      object-fit:cover;
-      border-radius:50%;
-      box-shadow:0 0 35px rgba(255,170,65,.45);
-      border:1px solid rgba(255,185,90,.55);
-    }
-
-    .brand span{
-      letter-spacing:8px;
-      font-weight:700;
-      font-size:18px;
-    }
-
-    .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:10px 18px;
-      border:1px solid rgba(255,185,90,.35);
-      border-radius:999px;
-      color:#ffc06a;
-      background:rgba(255,255,255,.04);
-      margin-bottom:28px;
-      font-size:13px;
-      letter-spacing:2px;
-    }
-
     h1{
-      font-size:clamp(54px,8vw,118px);
-      line-height:.92;
-      letter-spacing:-4px;
-      margin-bottom:22px;
-      text-transform:uppercase;
+      font-size:clamp(3.2rem,8vw,6.7rem);
+      line-height:.95;font-weight:950;margin-bottom:20px;
+      background:linear-gradient(90deg,#fff,#ffd08a,#ff9d3b);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     }
-
-    h1 span{
-      display:block;
-      font-size:clamp(34px,5vw,64px);
-      text-transform:none;
-      letter-spacing:-2px;
-      background:linear-gradient(90deg,#ff8a1f,#ffe4b5,#56c4ff);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      margin-top:12px;
-    }
-
-    .hero p{
-      color:#c5ccda;
-      font-size:20px;
-      line-height:1.65;
-      max-width:660px;
-      margin-bottom:34px;
-    }
-
-    .buttons{
-      display:flex;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
+    .slogan{font-size:1.55rem;color:#ffbd68;font-weight:800;margin-bottom:22px}
+    .lead{max-width:650px;color:#cbd5e1;font-size:1.08rem;line-height:1.8;margin-bottom:34px}
+    .buttons{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:28px}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:58px;
-      padding:0 26px;
-      border-radius:14px;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.16);
-      transition:.25s ease;
+      padding:15px 24px;border-radius:16px;font-weight:900;
+      transition:.25s ease;border:1px solid rgba(255,255,255,.12);
+    }
+    .btn-main{background:linear-gradient(135deg,#ffb347,#ff7a18);color:#050505;box-shadow:0 0 30px rgba(255,150,40,.35)}
+    .btn-main:hover,.btn-ghost:hover{transform:translateY(-3px)}
+    .btn-ghost{background:rgba(255,255,255,.05);color:#fff}
+    .contract-mini{
+      padding:18px;border-radius:18px;background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.09);color:#ffca7a;word-break:break-all;
+      font-size:.9rem;max-width:650px;
     }
 
-    .btn:hover{transform:translateY(-
+    .logo-card{
+      position:relative;border-radius:36px;padding:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 0 90px rgba(255,179,71,.15);
+    }
+    .logo-card:before{
+      content:"";position:absolute;inset:-40px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,179,71,.32),rgba(255,80,180,.12),transparent 68%);
+      filter:blur(25px);z-index:0;
+    }
+    .logo-card img{
+      position:relative;z-index:2;width:100%;border-radius:28px;display:block;
+      filter:drop-shadow(0 0 45px rgba(255,179,71,.4));
+    }
+
+    section{padding:92px 0}
+    .section-title{text-align:center;margin-bottom:48px}
+    .section-title h2{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:12px}
+    .section-title p{color:#aeb9ca;font-size:1.05rem}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .card{
+      padding:28px;border-radius:24px;background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.09);box-shadow:0 20px 60px rgba(0,0,0,.28);
+    }
+    .card:hover{border-color:rgba(255,179,71,.45);transform:translateY(-4px);transition:.25s}
+    .icon{font-size:2rem;margin-bottom:16px}
+    .card h3{color:#ffca7a;margin-bottom:12px}
+    .card p,.card li{color:#cbd5e1;line-height:1.7}
+
+    .features .grid{grid-template-columns:repeat(3,1fr)}
+    .roadmap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .phase h3{color:#ffbd68;font-size:1.35rem;margin-bottom:14px}
+    .phase ul{padding-left:18px}
+
+    .token-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    code{
+      display:block;margin:14px 0;padding:16px;border-radius:14px;
+      background:rgba(0,0,0,.32);color:#ffca7a;word-break:break-all;
+      border:1px solid rgba(255,255,255,.08)
+    }
+    .note{color:#ffbd68;font-weight:800;margin-top:12px}
+
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .email{color:#ffca7a;font-weight:900;word-break:break-all}
+
+    footer{
+      padding:40px 0;text-align:center;color:#9ca8ba;
+      border-top:1px solid rgba(255,255,255,.08);background:#02040a;
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.token-grid,.contact-grid{grid-template-columns:1fr}
+      .grid,.features .grid,.roadmap-grid{grid-template-columns:1fr}
+      .hero{text-align:center}
+      .buttons{justify-content:center}
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-icon">A</div>
+      <span>ANASTASIS</span>
+    </div>
+    <div class="nav-links">
+      <a href="#mission">Mission</a>
+      <a href="#features">Features</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#token">Token</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="pill">AI • ACCESSIBILITY • HUMAN IMPACT</div>
+      <h1>ANASTASIS</h1>
+      <div class="slogan">Guiding toward the light.</div>
+      <p class="lead">
+        ANASTASIS is building AI-powered assistive technology designed to help visually impaired people move through the world with more safety, confidence, and independence.
+      </p>
+      <div class="buttons">
+        <a class="btn btn-main" href="#mission">View Mission</a>
+        <a class="btn btn-ghost" href="https://x.com/AnastasisTeh" target="_blank">Follow on X</a>
+        <a class="btn btn-ghost" href="https://t.me/+aFT_FeK3dfoxYjY0" target="_blank">Telegram</a>
+        <a class="btn btn-ghost" href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF" target="_blank">DexScreener</a>
+      </div>
+      <div class="contract-mini">
+        Official Contract:<br>
+        C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <img src="logo.jpeg.png" alt="ANASTASIS Guardian Cat Logo">
+    </div>
+  </div>
+</header>
+
+<section id="mission">
+  <div class="container">
+    <div class="section-title">
+      <h2>Technology with Purpose</h2>
+      <p>AI, accessibility, and human impact — built with care.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card"><div class="icon">🧠</div><h3>AI-Powered</h3><p>Advanced artificial intelligence that understands the world in real time.</p></div>
+      <div class="card"><div class="icon">🦯</div><h3>Accessibility</h3><p>Tools that empower visually impaired individuals to move with confidence.</p></div>
+      <div class="card"><div class="icon">🤝</div><h3>Human Impact</h3><p>Technology built with empathy to create real change in people’s lives.</p></div>
+      <div class="card"><div class="icon">🌍</div><h3>Global Vision</h3><p>Building a future where accessibility is universal and inclusive.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>AI Accessibility Direction</h2>
+      <p>Concepts designed for independence, safety, and daily life.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card"><div class="icon">🚧</div><h3>Obstacle Awareness</h3><p>Guidance concepts for detecting obstacles and helping users navigate safer environments.</p></div>
+      <div class="card"><div class="icon">🎙️</div><h3>Voice Guidance</h3><p>Natural language assistance designed to explain surroundings and guide movement.</p></div>
+      <div class="card"><div class="icon">📳</div><h3>Vibration Alerts</h3><p>Discreet haptic feedback concepts for direction, warning, and awareness.</p></div>
+      <div class="card"><div class="icon">🚦</div><h3>Traffic Recognition</h3><p>Long-term direction for traffic light and crossing support.</p></div>
+      <div class="card"><div class="icon">🚌</div><h3>Transport Assistance</h3><p>Future guidance for public transport routes, stops, and movement support.</p></div>
+      <div class="card"><div class="icon">🆘</div><h3>Emergency Support</h3><p>Emergency contact concepts for family and trusted support networks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="container">
+    <div class="section-title">
+      <h2>ANASTASIS Roadmap</h2>
+      <p>From micro alpha to real-world impact.</p>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="card phase">
+        <h3>Phase I — REBIRTH</h3>
+        <ul>
+          <li>Evolution into ANASTASIS</li>
+          <li>Website & ecosystem launch</li>
+          <li>Community foundation</li>
+          <li>Solana visibility</li>
+          <li>Transparency and trust building</li>
+        </ul>
+      </div>
+
+      <div class="card phase">
+        <h3>Phase II — THE LIGHT PROTOCOL</h3>
+        <ul>
+          <li>AI accessibility research</li>
+          <li>Voice guidance concepts</li>
+          <li>Wearable direction</li>
+          <li>MVP planning</li>
+          <li>Community feedback</li>
+        </ul>
+      </div>
+
+      <div class="card phase">
+        <h3>Phase III — SUSTAINABLE IMPACT</h3>
+        <ul>
+          <li>Accessibility ecosystem</li>
+          <li>AI + DeFi integrations</li>
+          <li>Public progress updates</li>
+          <li>Community milestones</li>
+          <li>At 1M market cap, ANASTASIS aims to donate its first professional assistive smart device.</li>
+        </ul>
+      </div>
+
+      <div class="card phase">
+        <h3>Phase IV — MICRO ALPHA TO REALITY</h3>
+        <ul>
+          <li>Prototype exploration</li>
+          <li>AI guidance architecture</li>
+          <li>Testing & iteration</li>
+          <li>Community-driven development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="token">
+  <div class="container">
+    <div class="section-title">
+      <h2>Official ANASTASIS Token</h2>
+      <p>Built on Solana. Always verify the contract.</p>
+    </div>
+
+    <div class="token-grid">
+      <div class="card">
+        <h3>Official Contract</h3>
+        <code id="contract">C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC</code>
+        <button class="btn btn-main" onclick="copyContract()">Copy Contract</button>
+        <p class="note">Always verify the official contract address before any transaction.</p>
+      </div>
+
+      <div class="card">
+        <h3>Token Details</h3>
+        <p><strong>Name:</strong> ANASTASIS</p>
+        <p><strong>Symbol:</strong> $ANS</p>
+        <p><strong>Network:</strong> Solana</p>
+        <p><strong>Fixed Supply:</strong> 28,000,000 $ANS</p>
+        <br>
+        <a class="btn btn-ghost" target="_blank" href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF">View on DexScreener</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-title">
+      <h2>Contact & Partnerships</h2>
+      <p>For accessibility feedback, AI collaboration, DeFi ecosystem opportunities, or community support.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="card">
+        <h3>Email</h3>
+        <p class="email">contact.anastasis@proton.me</p>
+      </div>
+
+      <div class="card">
+        <h3>Community</h3>
+        <p><a href="https://x.com/AnastasisTeh" target="_blank">X / Twitter</a></p>
+        <p><a href="https://t.me/+aFT_FeK3dfoxYjY0" target="_blank">Telegram</a></p>
+      </div>
+
+      <div class="card">
+        <h3>Market</h3>
+        <p><a href="https://dexscreener.com/solana/9wnbcsuQHozDQpU1CKfkNrbxM7iy2QUFiPMyHgEtGPFF" target="_blank">View ANASTASIS on DexScreener</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>ANASTASIS — Built on Solana. Driven by people. Guiding toward the light.</p>
+    <p style="margin-top:10px;">contact.anastasis@proton.me</p>
+  </div>
+</footer>
+
+<script>
+  function copyContract(){
+    const contract = "C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC";
+    navigator.clipboard.writeText(contract);
+    alert("Contract copied!");
+  }
+</script>
+
+</body>
+</html>

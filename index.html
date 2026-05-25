@@ -1,90 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANASTASIS — Guiding Toward The Light</title>
 
-  <title>ANASTASIS — Guiding toward the light.</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Arial,sans-serif;
+      background:#03070d;
+      color:#f5f7fb;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
 
-  <meta
-    name="description"
-    content="ANASTASIS is building AI-powered assistive technology designed to help visually impaired people move through the world with more safety, confidence, and independence."
-  />
+    .hero{
+      min-height:100vh;
+      padding:40px 8%;
+      display:flex;
+      align-items:center;
+      background:
+        radial-gradient(circle at 75% 35%,rgba(255,168,62,.25),transparent 28%),
+        radial-gradient(circle at 90% 65%,rgba(0,132,255,.18),transparent 35%),
+        linear-gradient(135deg,#03070d,#07111f 65%,#02050a);
+      position:relative;
+    }
 
-  <meta
-    name="keywords"
-    content="ANASTASIS, AI, accessibility, visually impaired, Solana, wearable technology, assistive AI, blockchain, navigation"
-  />
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:70px 70px;
+      mask-image:linear-gradient(to bottom,black,transparent 80%);
+      pointer-events:none;
+    }
 
-  <meta name="theme-color" content="#050811" />
+    .hero-wrap{
+      width:100%;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:50px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
 
-  <!-- Open Graph -->
-  <meta
-    property="og:title"
-    content="ANASTASIS — Guiding toward the light."
-  />
+    .brand{
+      position:absolute;
+      top:28px;
+      left:8%;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      z-index:3;
+    }
 
-  <meta
-    property="og:description"
-    content="AI-powered assistive technology for visually impaired people. Built on Solana."
-  />
+    .brand img{
+      width:58px;
+      height:58px;
+      object-fit:cover;
+      border-radius:50%;
+      box-shadow:0 0 35px rgba(255,170,65,.45);
+      border:1px solid rgba(255,185,90,.55);
+    }
 
-  <meta
-    property="og:type"
-    content="website"
-  />
+    .brand span{
+      letter-spacing:8px;
+      font-weight:700;
+      font-size:18px;
+    }
 
-  <meta
-    property="og:url"
-    content="https://YOUR-VERCEL-DOMAIN.vercel.app"
-  />
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 18px;
+      border:1px solid rgba(255,185,90,.35);
+      border-radius:999px;
+      color:#ffc06a;
+      background:rgba(255,255,255,.04);
+      margin-bottom:28px;
+      font-size:13px;
+      letter-spacing:2px;
+    }
 
-  <meta
-    property="og:image"
-    content="https://YOUR-VERCEL-DOMAIN.vercel.app/anastasis-preview.png"
-  />
+    h1{
+      font-size:clamp(54px,8vw,118px);
+      line-height:.92;
+      letter-spacing:-4px;
+      margin-bottom:22px;
+      text-transform:uppercase;
+    }
 
-  <!-- Twitter -->
-  <meta
-    name="twitter:card"
-    content="summary_large_image"
-  />
+    h1 span{
+      display:block;
+      font-size:clamp(34px,5vw,64px);
+      text-transform:none;
+      letter-spacing:-2px;
+      background:linear-gradient(90deg,#ff8a1f,#ffe4b5,#56c4ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-top:12px;
+    }
 
-  <meta
-    name="twitter:title"
-    content="ANASTASIS — Guiding toward the light."
-  />
+    .hero p{
+      color:#c5ccda;
+      font-size:20px;
+      line-height:1.65;
+      max-width:660px;
+      margin-bottom:34px;
+    }
 
-  <meta
-    name="twitter:description"
-    content="AI-powered assistive technology for visually impaired people. Built on Solana."
-  />
+    .buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
 
-  <meta
-    name="twitter:image"
-    content="https://YOUR-VERCEL-DOMAIN.vercel.app/anastasis-preview.png"
-  />
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:0 26px;
+      border-radius:14px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.16);
+      transition:.25s ease;
+    }
 
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="anastasis-logo.png"
-  />
-
-  <!-- Fonts -->
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-
-</head>
+    .btn:hover{transform:translateY(-

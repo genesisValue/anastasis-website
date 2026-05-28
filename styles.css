@@ -5,67 +5,51 @@
 }
 
 :root {
-    --primary: #60a5fa;
-    --primary-dark: #3b82f6;
+    --bg: #0a0d14;
+    --nav: rgba(10, 13, 20, 0.97);
+    --accent: #3b82f6;
     --gold: #d4af37;
-    --dark: #0a0d14;
-    --darker: #05070f;
-    --card: #111827;
     --text: #e2e8f0;
     --text-light: #94a3b8;
+    --card: #111827;
+    --border: #1e2937;
 }
 
 body {
     font-family: 'Inter', system-ui, sans-serif;
-    background: var(--dark);
+    background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    overflow-x: hidden;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navigation */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 13, 20, 0.95);
+    background: var(--nav);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid #1e2937;
+    border-bottom: 1px solid var(--border);
     z-index: 1000;
 }
 
 .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.3rem 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.4rem 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .navbar-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.65rem;
+    font-size: 1.7rem;
     font-weight: 800;
     letter-spacing: -0.5px;
+    color: white;
 }
 
-.mascot {
-    font-size: 2rem;
-}
-
-.logo-text {
-    background: linear-gradient(90deg, #60a5fa, #a5b4fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.navbar-logo span {
+    color: var(--accent);
 }
 
 /* Hero */
@@ -75,66 +59,46 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(180deg, #0a0d14, #111827);
+    background: linear-gradient(180deg, #0a0d14 0%, #0f172a 100%);
     padding-top: 80px;
 }
 
 .hero-content {
-    max-width: 860px;
+    max-width: 900px;
     padding: 0 20px;
 }
 
-.mascot-large {
-    font-size: 9rem;
-    display: block;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.5));
-}
-
 .hero-title {
-    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    font-size: clamp(3rem, 8vw, 5.2rem);
     font-weight: 800;
+    margin-bottom: 20px;
     line-height: 1.05;
-    margin-bottom: 16px;
 }
 
 .hero-subtitle {
     font-size: 1.45rem;
     color: var(--text-light);
-    margin-bottom: 8px;
-}
-
-.hero-slogan {
-    font-size: 1.25rem;
-    color: #c4d0ff;
-    margin-bottom: 50px;
-    font-weight: 500;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .btn {
-    padding: 15px 36px;
+    padding: 16px 38px;
+    margin: 0 8px;
     border-radius: 12px;
     font-weight: 700;
     font-size: 1.05rem;
     text-decoration: none;
+    display: inline-block;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: var(--accent);
     color: white;
 }
 
 .btn-primary:hover {
-    background: var(--primary-dark);
+    background: #2563eb;
     transform: translateY(-4px);
 }
 
@@ -145,7 +109,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(212, 175, 55, 0.08);
     transform: translateY(-4px);
 }
 
@@ -157,68 +121,59 @@ section {
 h2 {
     font-size: 2.8rem;
     text-align: center;
-    margin-bottom: 18px;
-    background: linear-gradient(90deg, #60a5fa, #c4d0ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-light);
-    font-size: 1.2rem;
-    max-width: 680px;
+    font-size: 1.25rem;
+    max-width: 700px;
     margin: 0 auto 60px;
 }
 
 /* Cards */
-.mission-grid, .token-grid, .contact-content {
+.mission-grid, .token-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 28px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.mission-card, .token-card, .contact-card {
+.mission-card, .token-card {
     background: var(--card);
-    border: 1px solid #1e2937;
+    border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 38px 32px;
-    transition: all 0.4s ease;
+    padding: 40px 30px;
 }
 
-.mission-card:hover, .token-card:hover, .contact-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+.mission-card:hover, .token-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-6px);
 }
 
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-/* Token Section */
+/* Contract */
 .contract-box {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0,0,0,0.4);
     padding: 18px;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
     margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .contract-box code {
+    color: var(--gold);
     font-family: monospace;
     word-break: break-all;
-    color: var(--gold);
     flex: 1;
 }
 
 .copy-btn {
-    padding: 10px 18px;
+    padding: 10px 20px;
     background: var(--gold);
     color: black;
     border: none;
@@ -227,47 +182,16 @@ h2 {
     cursor: pointer;
 }
 
-.copy-btn:hover {
-    background: #f5c24a;
-}
-
 /* Footer */
 .footer {
-    background: var(--darker);
+    background: #05070f;
     padding: 60px 0 30px;
     text-align: center;
-    border-top: 1px solid #1e2937;
+    border-top: 1px solid var(--border);
 }
 
 .footer-text {
     color: var(--gold);
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     margin-bottom: 12px;
-}
-
-.footer-email a {
-    color: var(--text-light);
-    text-decoration: none;
-}
-
-.footer-email a:hover {
-    color: var(--primary);
-}
-
-.footer-copyright {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin-top: 30px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .btn {
-        width: 85%;
-    }
 }

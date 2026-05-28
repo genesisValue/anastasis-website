@@ -4,127 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anastasis Tech — AI for Visual Independence</title>
-  <meta name="description" content="Developing intelligent assistive technology to help visually impaired people live with greater confidence and safety." />
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Inter,Arial,sans-serif;background:#0a0d14;color:#e2e8f0;line-height:1.75}
-    .container{width:min(1180px,90%);margin:auto}
-
-    nav{
-      position:fixed;top:0;width:100%;z-index:1000;
-      background:rgba(10,13,20,0.95);backdrop-filter:blur(12px);
-      border-bottom:1px solid #1e2937;
-    }
-    .nav-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:800;font-size:1.55rem;letter-spacing:-0.5px}
-    .brand span{color:#60a5fa}
-
-    .hero{
-      min-height:100vh;padding:170px 0 100px;
-      background:linear-gradient(180deg,#0a0d14,#111827);
-      display:flex;align-items:center;
-    }
-    h1{font-size:clamp(2.9rem,7vw,4.8rem);line-height:1.05;font-weight:800;margin-bottom:28px}
-    .lead{font-size:1.28rem;color:#94a3b8;max-width:680px;margin-bottom:48px}
-
-    .btn{
-      padding:16px 36px;border-radius:12px;font-weight:700;font-size:1.05rem;
-      text-decoration:none;display:inline-block;transition:all .3s ease;
-    }
-    .btn-primary{background:#3b82f6;color:white}
-    .btn-primary:hover{background:#2563eb;transform:translateY(-4px)}
-
-    section{padding:120px 0}
-    .section-title{text-align:center;margin-bottom:60px}
-    .section-title h2{font-size:2.75rem;margin-bottom:18px}
-    .section-title p{color:#94a3b8;font-size:1.18rem;max-width:720px;margin:auto}
-
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
-    .card{
-      background:#111827;border:1px solid #1e2937;border-radius:20px;padding:42px 34px;
-    }
-    .card h3{color:#60a5fa;margin-bottom:18px;font-size:1.4rem}
-
-    .token-section{
-      background:#111827;border:1px solid #1e2937;border-radius:16px;
-      padding:32px;max-width:580px;margin:40px auto 0;text-align:center;
-    }
-
-    footer{
-      background:#05070f;padding:70px 0 40px;text-align:center;color:#64748b;
-      border-top:1px solid #1e2937;
-    }
-    .email{color:#60a5fa;font-weight:600}
-  </style>
+  <meta name="description" content="Developing AI-powered assistive technology to help visually impaired people navigate the world with greater independence and safety." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<nav>
-  <div class="container nav-inner">
-    <div class="brand">ANASTASIS <span>TECH</span></div>
-  </div>
-</nav>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <span class="mascot">🧭</span>
+        <span class="logo-text">ANASTASIS TECH</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#mission" class="nav-link">Mission</a></li>
+        <li><a href="#technology" class="nav-link">Technology</a></li>
+        <li><a href="#token" class="nav-link">Token</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<section class="hero">
-  <div class="container">
-    <h1>AI that helps people see the world again.</h1>
-    <p class="lead">
-      Anastasis Tech develops intelligent assistive technology designed to give visually impaired individuals greater independence, safety, and confidence in their daily lives.
-    </p>
-    <a href="#mission" class="btn btn-primary">Our Mission</a>
-  </div>
-</section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-mascot">
+        <span class="mascot-large">🧭</span>
+      </div>
+      <h1 class="hero-title">Guiding Toward Independence</h1>
+      <p class="hero-subtitle">AI-powered technology for the visually impaired</p>
+      <p class="hero-slogan">Because everyone deserves to move freely.</p>
+      
+      <div class="hero-buttons">
+        <a href="#mission" class="btn btn-primary">Our Mission</a>
+        <a href="#token" class="btn btn-secondary">Learn about $ANS</a>
+      </div>
+    </div>
+  </section>
 
-<section id="mission">
-  <div class="container">
-    <div class="section-title">
+  <!-- Mission -->
+  <section id="mission" class="mission">
+    <div class="container">
       <h2>Our Mission</h2>
-      <p>We build responsible AI technology that truly improves people's lives.</p>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Independence First</h3>
-        <p>Technology that empowers visually impaired people to navigate spaces safely and confidently on their own.</p>
+      <p class="section-subtitle">Building intelligent tools that restore independence to those who cannot see.</p>
+      
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="card-icon">🧠</div>
+          <h3>Real AI Guidance</h3>
+          <p>Advanced computer vision and spatial awareness designed to help users navigate safely in real environments.</p>
+        </div>
+        <div class="mission-card">
+          <div class="card-icon">🦯</div>
+          <h3>Independence First</h3>
+          <p>Technology built to give visually impaired people greater confidence and freedom in daily life.</p>
+        </div>
+        <div class="mission-card">
+          <div class="card-icon">💡</div>
+          <h3>Community Funded</h3>
+          <p>Supported by a dedicated token community that believes accessibility should be a right, not a privilege.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Human-Centered Design</h3>
-        <p>Every feature is built based on real needs of the visually impaired community, not just technical possibilities.</p>
+    </div>
+  </section>
+
+  <!-- Token -->
+  <section id="token" class="token">
+    <div class="container">
+      <h2>ANASTASIS Token</h2>
+      <p class="section-subtitle">The fuel behind our mission. Community-driven funding for real impact.</p>
+      
+      <div class="token-grid">
+        <div class="token-card">
+          <h3>Contract Address</h3>
+          <div class="contract-box">
+            <code id="contractAddress">C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC</code>
+            <button class="copy-btn" onclick="copyToClipboard('contractAddress')">Copy</button>
+          </div>
+          <p class="security-note">Always verify the contract address before any transaction.</p>
+        </div>
+
+        <div class="token-card">
+          <h3>Token Details</h3>
+          <ul class="token-details">
+            <li><strong>Symbol:</strong> $ANS</li>
+            <li><strong>Network:</strong> Solana</li>
+            <li><strong>Total Supply:</strong> 28,000,000</li>
+            <li><strong>Utility:</strong> Community governance &amp; project funding</li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>Transparency & Impact</h3>
-        <p>We are committed to real progress and open communication about what we build and how we build it.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="contact-content">
+        <div class="contact-card">
+          <h3>Email</h3>
+          <p>For partnerships, feedback and collaboration opportunities.</p>
+          <a href="mailto:contact.anastasis@proton.me" class="contact-email">
+            contact.anastasis@proton.me
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Get In Touch</h2>
-      <p>Have questions or want to collaborate? We'd love to hear from you.</p>
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">ANASTASIS TECH — Technology with Purpose</p>
+      <p class="footer-email">contact.anastasis@proton.me</p>
+      <p class="footer-copyright">© 2026 Anastasis Tech. All Rights Reserved.</p>
     </div>
-    <div style="text-align:center;font-size:1.35rem">
-      <a href="mailto:contact.anastasis@proton.me" class="email">contact.anastasis@proton.me</a>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<div class="token-section">
-  <p style="color:#64748b;margin-bottom:8px">ANASTASIS Token ($ANS)</p>
-  <p style="font-size:0.95rem;word-break:break-all;color:#94a3b8">
-    C1DeZGWcCUWLAReAsRjvySK5kyuNBqT3tNCVoDTReYAC
-  </p>
-</div>
-
-<footer>
-  <div class="container">
-    <p style="margin-bottom:12px">© 2026 Anastasis Tech. Building technology with purpose.</p>
-    <p>contact.anastasis@proton.me</p>
-  </div>
-</footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
